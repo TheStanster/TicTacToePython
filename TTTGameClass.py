@@ -1,53 +1,50 @@
 class TicTacToeGame():
     """Class that contains the game logic"""
 
-    board = [''] * 10
-
     # Getters
     def GetCurrentTurn(self):
-        return __MyCurrentBoard
+        return self.__CurrentTurn
 
-    def place_marker(board, marker, position):
-        board[position] = marker
-
-    def GetBoard(self):
-        print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-        print('-----------')
-        print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-        print('-----------')
-        print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
+    def GetBoard(self,board):
+        print('  ' + board[7] + '  |  ' +  board[8] + '  |  ' + board[9] + '   ')
+        print('-----------------')
+        print('  ' + board[4] + '  |  ' +  board[5] + '  |  ' + board[6] + '   ')
+        print('-----------------')
+        print('  ' + board[1] + '  |  ' +  board[2] + '  |  ' + board[3] + '   ')
+        print('\n')
         
     def GetUserOneMark(self):
-        return
+        return self.__UserOneMark
 
     def GetUserTwoMark(self):
-        return
+        return self.__UserTwoMark
         
     def IsGameWon(self):
-        return 
+        return self.__bGameIsWon
     
     def IsGameDraw(self):
-        return
+        return self.__bGameIsDraw
+
+    def place_marker(self, board, marker, position):
+        board[position] = marker
 
     def Reset(self): # set game to initial state
         self.__bGameIsWon = False
         self.__bGameIsDraw = False
         self.__UserOneMark = 'x'
         self.__UserTwoMark = 'o'
-        #self.__MyCurrentBoard = board
-        self.__MyCurrentTurn = 'x'
+        self.__CurrentTurn = 'x'
 
     
     def __init__(self): # TODO class constructor
-        board = []
+        
         self.__bGameIsWon = ''
         self.__bGameIsDraw = ''
 
-        self.__MyCurrentTurn = ''
-        self.__MyCurrentBoard = '' 
+        self.__CurrentTurn = ''
         self.__UserOneMark = ''
         self.__UserTwoMark = ''
-        self.Reset
+        #self.Reset
          
       
 

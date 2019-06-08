@@ -1,9 +1,28 @@
 class TicTacToeGame():
     """Class that contains the game logic"""
+    
+    def Reset(self): # set game to initial state
+        self.bGameIsWon = False
+        self.bGameIsDraw = False
+        
+        self.currentTurn = 1
+        self.currentMark = ''
+        self.playerNum = ''
+    
+    def __init__(self): # class constructor
+        
+        self.bGameIsWon = ''
+        self.bGameIsDraw = ''
 
-    # Getters
-    def GetCurrentTurn(self):
-        return self.__CurrentTurn
+        self.userOneMark = 'x'
+        self.userTwoMark = 'o'
+        self.currentTurn = ''
+        self.currentMark = ''
+        self.playerNum = ''    
+        
+        # Getters
+    def NextTurn(self):
+        self.currentTurn += 1
 
     def GetBoard(self,board):
         print('  ' + board[7] + '  |  ' +  board[8] + '  |  ' + board[9] + '   ')
@@ -12,39 +31,25 @@ class TicTacToeGame():
         print('-----------------')
         print('  ' + board[1] + '  |  ' +  board[2] + '  |  ' + board[3] + '   ')
         print('\n')
-        
-    def GetUserOneMark(self):
-        return self.__UserOneMark
-
-    def GetUserTwoMark(self):
-        return self.__UserTwoMark
-        
-    def IsGameWon(self):
-        return self.__bGameIsWon
     
-    def IsGameDraw(self):
-        return self.__bGameIsDraw
+    def GetCurrentPlayerMark(self):
+        if self.currentTurn % 2 == 1:
+            self.currentMark = self.userOneMark
+        else:
+            self.currentMark = self.userTwoMark
 
-    def place_marker(self, board, marker, position):
-        board[position] = marker
+    def GetCurrentPlayerNumber(self):
+        if self.currentTurn % 2 == 1:
+            self.playerNum = '1'
+        else:
+            self.playerNum = '2'
 
-    def Reset(self): # set game to initial state
-        self.__bGameIsWon = False
-        self.__bGameIsDraw = False
-        self.__UserOneMark = 'x'
-        self.__UserTwoMark = 'o'
-        self.__CurrentTurn = 'x'
 
-    
-    def __init__(self): # TODO class constructor
-        
-        self.__bGameIsWon = ''
-        self.__bGameIsDraw = ''
+    def place_mark(self, board, mark, position):
+        board[position] = mark
 
-        self.__CurrentTurn = ''
-        self.__UserOneMark = ''
-        self.__UserTwoMark = ''
-        #self.Reset
+
+       
          
       
 

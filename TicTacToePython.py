@@ -6,7 +6,6 @@ import TTTGameClass # imports the game class
 TTTGame = TTTGameClass.TicTacToeGame() # New object of the game class
 board = [' '] * 10
 
-
 # Prints logo, example grid and a short game description
 def intro():
     print("    SSS   V     V")
@@ -19,26 +18,46 @@ def intro():
     print("\n")     #short game description
     print("Welcome to SVTTT (Stan Valster's Tic-Tac-Toe), a game of shapes.")
     print("\n")
-    print("Your goal is to beat the opposing user in getting three of your marks(x/o) in a row on the grid.") # TODO make this and the next line appear after a few moments
-    print("An example of the grid is shown above. The numbers represent the possible positions in which you can place your mark.\n")                        
+    print("Your goal is to beat the opposing user in getting three of your marks(x/o) in a row on the board.") # TODO make this and the next line appear after a few moments
+    print("An example of the board is shown above. The numbers represent the possible positions in which you can place your mark.\n")                        
 
 # Starts a single round of Tic-Tac-Toe
 def playGame():
 
     TTTGame.Reset()
-    TTTGame.GetBoard(board)
-    print('Hot diggity\n')
-    TTTGame.place_marker(board,'x',3)
-    TTTGame.place_marker(board,'o',2)
-    TTTGame.place_marker(board,'x',1)
-    TTTGame.GetBoard(board)
+    takeTurns()
 
     # After the round results in a win or draw
     presentGameSummary()
     askToPlayAgain()
     
 
-    return                     
+    return   
+
+def takeTurns():
+    while TTTGame.bGameIsWon == False and TTTGame.bGameIsDraw == False:
+        turn = str(TTTGame.currentTurn)
+        print("\nTurn " + turn + ".\n")
+        TTTGame.GetBoard(board)
+        submitChoice()
+        TTTGame.NextTurn()
+
+def submitChoice():
+    TTTGame.GetCurrentPlayerMark()
+    TTTGame.GetCurrentPlayerNumber()
+
+    choice = input("Player " + TTTGame.playerNum + " please enter the number corresponding to the position on the board where you want to place your mark. \n")
+    choice = int(choice)
+    if choice >= 1 and choice <= 9:
+        TTTGame.place_mark(board, TTTGame.currentMark, choice)
+
+    elif board[choice] == TTTGame.userOneMark or board[choice] == TTTGame.userTwoMark:
+        print("This position has already been chosen. Please enter an empty position on the board. \n")
+        return submitChoice()
+    else:
+        print("Please enter a number between 1 and 9. \n")
+        return submitChoice()
+
 
 # Ask if user wants to play before start of first game
 def askToPlayGame():
@@ -48,7 +67,9 @@ def askToPlayGame():
         answer = input("Would you like to play a game of tic-tac-toe? (y/n) \n")
         print('\n')
         if (answer == 'yes' or answer == 'y'):
-            return  
+            print("Player 1 will be represented on the board by an " + TTTGame.userOneMark + " mark.")
+            print("Player 2 will be represented on the board by an " + TTTGame.userTwoMark + " mark. \n")
+            return # TODO check if this loop is having errors by there being no break statements 
         elif (answer == 'no' or answer == 'n'):
             answer = ''
             answer = input("Are you sure? (y/n) \n")

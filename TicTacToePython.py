@@ -23,8 +23,9 @@ def intro():
 
 # Starts a single round of Tic-Tac-Toe
 def playGame():
-
+    
     TTTGame.Reset()
+    ResetBoard()
     takeTurns()
 
     # After the round results in a win or draw
@@ -36,11 +37,13 @@ def playGame():
 
 def takeTurns():
     while TTTGame.bGameIsWon == False and TTTGame.bGameIsDraw == False:
+        TTTGame.NextTurn()
         turn = str(TTTGame.currentTurn)
         print("\nTurn " + turn + ".\n")
-        TTTGame.GetBoard(board)
         submitChoice()
-        TTTGame.NextTurn()
+        TTTGame.GetBoard(board)
+        TTTGame.BoardCheck(board, TTTGame.currentMark)
+        
 
 def submitChoice():
     TTTGame.GetCurrentPlayerMark()
@@ -48,12 +51,11 @@ def submitChoice():
 
     choice = input("Player " + TTTGame.playerNum + " please enter the number corresponding to the position on the board where you want to place your mark. \n")
     choice = int(choice)
-    if choice >= 1 and choice <= 9:
-        TTTGame.place_mark(board, TTTGame.currentMark, choice)
-
-    elif board[choice] == TTTGame.userOneMark or board[choice] == TTTGame.userTwoMark:
+    if board[choice] == TTTGame.userOneMark or board[choice] == TTTGame.userTwoMark:
         print("This position has already been chosen. Please enter an empty position on the board. \n")
-        return submitChoice()
+        return submitChoice() 
+    elif choice >= 1 and choice <= 9:
+        TTTGame.place_mark(board, TTTGame.currentMark, choice)
     else:
         print("Please enter a number between 1 and 9. \n")
         return submitChoice()
@@ -106,6 +108,17 @@ def askToPlayAgain():
             return askToPlayAgain()
     return               
 
+def ResetBoard():
+    board[1]= ' '
+    board[2]= ' '
+    board[3]= ' '
+    board[4]= ' '
+    board[5]= ' '
+    board[6]= ' '
+    board[7]= ' '
+    board[8]= ' '
+    board[9]= ' '
+    
 
 def presentGameSummary():
 

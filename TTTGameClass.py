@@ -5,9 +5,10 @@ class TicTacToeGame():
         self.bGameIsWon = False
         self.bGameIsDraw = False
         
-        self.currentTurn = 1
+        self.currentTurn = 0
         self.currentMark = ''
         self.playerNum = ''
+        
     
     def __init__(self): # class constructor
         
@@ -18,8 +19,30 @@ class TicTacToeGame():
         self.userTwoMark = 'o'
         self.currentTurn = ''
         self.currentMark = ''
-        self.playerNum = ''    
+        self.playerNum = ''
         
+     
+    def BoardCheck(self, board, mark):
+        if self.currentTurn == 9:
+            self.bGameIsDraw = True
+
+        else: 
+            self.bGameIsWon = self.IsGameWon(board, mark)
+
+
+    def IsGameWon(self, board, mark):
+        return ((board[7] == mark and board[8] == mark and board[9] == mark) or # across the top
+        (board[4] == mark and board[5] == mark and board[6] == mark) or # across the middle
+        (board[1] == mark and board[2] == mark and board[3] == mark) or # across the bottom
+        (board[7] == mark and board[4] == mark and board[1] == mark) or # down the middle
+        (board[8] == mark and board[5] == mark and board[2] == mark) or # down the middle
+        (board[9] == mark and board[6] == mark and board[3] == mark) or # down the right side
+        (board[7] == mark and board[5] == mark and board[3] == mark) or # diagonal
+        (board[9] == mark and board[5] == mark and board[1] == mark)) # diagonal
+              
+
+       
+
         # Getters
     def NextTurn(self):
         self.currentTurn += 1

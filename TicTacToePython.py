@@ -19,8 +19,9 @@ def intro():
     print("\n")     #short game description
     print("Welcome to SVTTT (Stan Valster's Tic-Tac-Toe), a game of shapes.")
     print("\n")
-    print("Your goal is to beat the opposing user in getting three of your marks(x/o) in a row on the board.") # TODO make this and the next line appear after a few moments
-    print("An example of the board is shown above. The numbers represent the possible positions in which you can place your mark.\n")                        
+    print("Your goal is to beat the opposing user in getting three of your marks(x/o) in a row on the board.") 
+    print("An example of the board is shown above. The numbers represent the possible positions in which you can place your mark.")
+    print("Take a good look at what numbers correspond to which positions.\nShould you forget, you can scroll up to the example or check the numpad on the right side of your keyboard.\n")
 
 # Starts a single round of Tic-Tac-Toe and runs until the round is finished
 def playGame():
